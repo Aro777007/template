@@ -1,0 +1,110 @@
+#include <iostream>
+using namespace std;
+
+template <typename T>
+class matrix
+{
+public:
+
+    matrix() {};
+
+    int n = 0;
+    int m = 0;
+    T** array = nullptr;
+
+    matrix(const matrix& obj)
+    {   
+        this->n = obj.n;
+        this->m = obj.m;
+        T** array = new T* [n];
+
+        for (T i = 0; i < n; i++)
+        {
+            array[i] = obj.array[i];
+        }
+    }
+
+
+    matrix& operator =(const matrix& obj)
+    {
+        if (this != &obj)
+        {
+            delete[] array;
+            this->n = obj.n;
+            this->m = obj.m;
+            T** array = new T* [n];
+            for (T i = 0; i < m; ++i)
+            {
+                this->array[i] = new int[m];
+            }
+        }
+        return *this;
+    }
+
+
+    void init(T** array, int n, int m)
+    {
+        for (T i = 0; i < n; ++i)
+        {
+            for (T j = 0; j < m; ++j)
+            {
+                array[i][j] = i;
+            }
+        }
+    }
+
+    ~matrix() {};
+
+
+    void swap(T** array, int n, int m)
+    {
+        T i = 0;
+        for (; i < n; ++i)
+        {
+            for (; i < m; ++i)
+            {
+                T* temp = new T(1);
+                *temp = array[0][i];
+                array[0][i] = array[2][i];
+                array[2][i] = *temp;
+            }
+        }
+    }
+
+    void print(T** array, int n, int m)
+    {
+        for (T i = 0; i < n; ++i)
+        {
+            for ( T
+                j = 0; j < m; j++)
+            {
+                cout << array[i][j];
+            }
+            cout << endl;
+        }
+    }
+
+
+};
+
+
+
+int main()
+{
+
+    int n;
+    int m;
+    cin >> n;
+    cin >> m;
+    int** array = new int* [n];
+    for (int i = 0; i < m; ++i)
+    {
+        array[i] = new int[m];
+    }
+
+    matrix <int> obj;
+    matrix <int> matrixobj1(obj);
+    obj.init(array, n, m);
+    obj.swap(array, n, m);
+    obj.print(array, n, m);
+}
