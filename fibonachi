@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+template <typename t>
+t fibonachi(t n)
+{
+	
+
+	if (n >= 1)
+	{
+		return  (n -1)+ (n - 2);
+	}
+	
+   
+}
+
+
+int main()
+{
+	int n;
+	cin >> n;
+	int result = fibonachi(n);
+	fibonachi <int>(n);
+	cout << result;
+}
